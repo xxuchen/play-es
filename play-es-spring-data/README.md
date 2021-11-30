@@ -31,6 +31,12 @@ private RestHighLevelClient elasticsearchClient;
 private ElasticsearchRestTemplate elasticsearchRestTemplate;
 ```
 
+#### elasticsearchRestTemplate 与 elasticsearchTemplate 区别
 
+elasticsearchRestTemplate 与 elasticsearchTemplate 都是 ElasticsearchOperations 接口的实现类。
+
+但是 elasticsearchTemplate 是基于 Transport Client 实现。
+
+elasticsearchRestTemplate 是基于 High Level REST Client 实现。
 
   
