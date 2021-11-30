@@ -2,11 +2,11 @@ package priv.xuchen;
 
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.data.elasticsearch.core.IndexOperations;
+import priv.xuchen.base.TestAppBase;
+import priv.xuchen.entity.Product;
 
 import java.io.IOException;
 
@@ -17,9 +17,7 @@ import java.io.IOException;
  * @author: xuchen
  * @date: 2021/11/29 22:26
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringDataEsIndexTest {
+public class SpringDataEsIndexTest extends TestAppBase {
     
 
     @Autowired
@@ -32,7 +30,29 @@ public class SpringDataEsIndexTest {
      * 创建索引
      */
     @Test
-    public void createIndex() throws IOException {
+    public void test_createIndex() throws IOException {
+        // 这里通过spring data会自动创建索引
         System.out.println("创建索引");
+    }
+
+    /**
+     * 删除索引
+     * 老版本索引删除方式
+     */
+    @Test
+    public void test_deleteIndex() throws IOException {
+        boolean delete = elasticsearchRestTemplate.deleteIndex(Product.class);
+        System.out.println(delete);
+    }
+
+    /**
+     * 删除索引
+     * 新版本索引删除方式
+     */
+    @Test
+    public void test_deleteIndex_new() {
+        IndexOperations indexOperations = elasticsearchRestTemplate.indexOps(Product.class);
+        boolean delete = indexOperations.delete();
+        System.out.println(delete);
     }
 }

@@ -30,7 +30,7 @@ public class Product {
     @Field(type = FieldType.Keyword)
     private String category;
     @Field(type = FieldType.Double)
-    private String price;
+    private Double price;
     //该字段不分词（FieldType.Keyword），不作为索引关联（index = false）
     @Field(type = FieldType.Keyword, index = false)
     private String images;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import priv.xuchen.entity.Product;
 
 /**
- * TODO
+ * ProductDao
  *
  * @version 1.0
  * @author: xuchen
